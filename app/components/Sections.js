@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 const reveal = {
@@ -47,21 +48,40 @@ export function About() {
             <strong>Next.js</strong>. ✨
           </p>
         </motion.div>
-        <div className="stats">
-          {stats.map((s, i) => (
-            <motion.div
-              key={s.t}
-              className="stat"
-              initial={{ opacity: 0, scale: 0.5, rotate: -20 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ type: 'spring', delay: i * 0.1 }}
-              whileHover={{ scale: 1.08, rotate: 0 }}
-            >
-              <b>{s.n}</b>
-              {s.t}
-            </motion.div>
-          ))}
+        <div className="about-side">
+          <motion.div
+            className="about-photo"
+            initial={{ opacity: 0, scale: 0.6, rotate: -12 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 2 }}
+            viewport={{ once: true }}
+            transition={{ type: 'spring', stiffness: 120, damping: 12 }}
+            whileHover={{ scale: 1.04, rotate: -2 }}
+          >
+            <Image
+              src="/me.jpg"
+              alt="Portrait of Bedirhan Yusuf Erdemli"
+              width={800}
+              height={800}
+              sizes="(max-width: 900px) 80vw, 400px"
+              priority
+            />
+          </motion.div>
+          <div className="stats">
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.t}
+                className="stat"
+                initial={{ opacity: 0, scale: 0.5, rotate: -20 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ type: 'spring', delay: i * 0.1 }}
+                whileHover={{ scale: 1.08, rotate: 0 }}
+              >
+                <b>{s.n}</b>
+                {s.t}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
